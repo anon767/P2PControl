@@ -36,11 +36,17 @@
   <ItemGroup>
     <Compile Include="MainClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PluginLoader.cs" />
-    <Compile Include="Logger.cs" />
     <Compile Include="Communication\PubSub.cs">
       <IncludeInPackage>true</IncludeInPackage>
     </Compile>
+    <Compile Include="Lifetime\Register.cs" />
+    <Compile Include="Lifetime\ShortcutUtil.cs" />
+    <Compile Include="Communication\AESEncryption.cs" />
+    <Compile Include="Communication\Verify.cs" />
+    <Compile Include="config.cs" />
+    <Compile Include="Lifetime\Logger.cs" />
+    <Compile Include="Lifetime\PluginLoader.cs" />
+    <Compile Include="Communication\Dispatcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PluginContract\PluginContract.csproj">
@@ -53,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Communication\" />
+    <Folder Include="Lifetime\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Costura">

@@ -2,6 +2,7 @@
 
 using System.Text;
 using pluginmanager.Communication;
+using pluginmanager.Lifetime;
 
 namespace pluginmanager
 {
@@ -10,12 +11,12 @@ namespace pluginmanager
         public static void Main(string[] args)
         {
 
-            //PluginLoader pluginLoader = new PluginLoader("./");
+            PluginLoader pluginLoader = new PluginLoader("./");
+            Register register = new Register();
 
             Logger.Log("main", "started");
-            PubSub pubSub = new PubSub("asdasdasdasdassdgdf");
-            pubSub.Subscribe("test", (obj) => Logger.Log("main", Encoding.UTF8.GetString(obj, 0, obj.Length)));
-            _ = pubSub.Publish("test", "yooo was geht ab");
+            Dispatcher dispatcher = new Dispatcher();
+
 
             while (true) { }
         }

@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "safekatz", "safekatz\safeka
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Plugins", "Plugins", "{3FC2193E-33E2-4665-98AE-E4DE01440498}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{D1E4B6D1-1812-4D63-9360-E50BFC8968FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hooks", "Hooks\Hooks.csproj", "{40B1ACFB-4671-4254-9629-75B32C4BF027}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -27,6 +31,14 @@ Global
 		{95017074-0A0F-4E52-B755-C20166FD6D72}.Debug|x86.Build.0 = Debug|Any CPU
 		{95017074-0A0F-4E52-B755-C20166FD6D72}.Release|x86.ActiveCfg = Release|Any CPU
 		{95017074-0A0F-4E52-B755-C20166FD6D72}.Release|x86.Build.0 = Release|Any CPU
+		{D1E4B6D1-1812-4D63-9360-E50BFC8968FD}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D1E4B6D1-1812-4D63-9360-E50BFC8968FD}.Debug|x86.Build.0 = Debug|Any CPU
+		{D1E4B6D1-1812-4D63-9360-E50BFC8968FD}.Release|x86.ActiveCfg = Release|Any CPU
+		{D1E4B6D1-1812-4D63-9360-E50BFC8968FD}.Release|x86.Build.0 = Release|Any CPU
+		{40B1ACFB-4671-4254-9629-75B32C4BF027}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{40B1ACFB-4671-4254-9629-75B32C4BF027}.Debug|x86.Build.0 = Debug|Any CPU
+		{40B1ACFB-4671-4254-9629-75B32C4BF027}.Release|x86.ActiveCfg = Release|Any CPU
+		{40B1ACFB-4671-4254-9629-75B32C4BF027}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{95017074-0A0F-4E52-B755-C20166FD6D72} = {3FC2193E-33E2-4665-98AE-E4DE01440498}

@@ -11,9 +11,8 @@ namespace pluginmanager.Communication
          private ICoreApi coreApi;
         public PubSub(string passphraset)
         {
-            string passphrase = "this is not a secure pass phrase";
 
-            var engine = new IpfsEngine(passphrase.ToCharArray());
+            var engine = new IpfsEngine(config.PubSubPassPhrase.ToCharArray());
             engine.StartAsync().Wait();
             coreApi = engine;
           
