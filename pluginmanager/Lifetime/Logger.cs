@@ -9,7 +9,7 @@ namespace pluginmanager
 
         public static void Log(String modulename, String msg)
         {
-            Console.WriteLine($"{modulename} says {msg}");
+            Console.WriteLine($"{modulename}: {msg}");
         }
     }
 }
