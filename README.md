@@ -9,3 +9,7 @@ A Remote Administration Tool to allow remote control over IPFS p2p connection fo
 - Publish/Subscribe over IPFS P2P
 - Commands are verified via RSA Signature verification
 - Plugins
+
+## Tests
+
+For testing reasons there is a private/public key pair attached
