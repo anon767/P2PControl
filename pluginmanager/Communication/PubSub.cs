@@ -8,11 +8,11 @@ namespace pluginmanager.Communication
 {
     public class PubSub
     {
-         private ICoreApi coreApi;
-        public PubSub(string passphraset)
+        private ICoreApi coreApi;
+        public PubSub(string passphrase)
         {
 
-            var engine = new IpfsEngine(config.PubSubPassPhrase.ToCharArray());
+            var engine = new IpfsEngine(passphrase.ToCharArray());
             engine.StartAsync().Wait();
             coreApi = engine;
           

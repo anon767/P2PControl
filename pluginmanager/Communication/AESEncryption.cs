@@ -93,7 +93,7 @@ namespace pluginmanager.Communication
             }
             catch (Exception e)
             {
-                Logger.Log("AESEnvryption", $"{e.Message}");
+                Logger.Log("AESEncryption", $"{e.Message}");
                 return null;
             }
         }

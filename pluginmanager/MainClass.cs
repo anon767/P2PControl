@@ -1,7 +1,4 @@
-﻿
-
-using System.Text;
-using pluginmanager.Communication;
+﻿using pluginmanager.Communication;
 using pluginmanager.Lifetime;
 
 namespace pluginmanager
